@@ -1,0 +1,1409 @@
+{
+  "package": "Unsplash",
+  "tagline": "Unsplash API",
+  "description": "Unsplash",
+  "image": "http:\/\/logo.clearbit.com\/unsplash.com",
+  "repo": "https:\/\/github.com\/RapidSoftwareSolutions\/Marketplace-Unsplash-Package",
+  "keywords": [
+    "API",
+    "images"
+  ],
+  "accounts": {
+    "domain": "unsplash.com",
+    "credentials": [
+      "apiKey",
+      "apiSecret"
+    ]
+  },
+  "blocks": [
+    {
+      "name": "getAccessToken",
+      "description": "Generate access token",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "Api key obtained from Unsplash",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "Api secret obtained from Unsplash",
+          "required": true
+        },
+        {
+          "name": "redirectUri",
+          "type": "String",
+          "info": "Redirect URL you set",
+          "required": true
+        },
+        {
+          "name": "code",
+          "type": "String",
+          "info": "Code received from user",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getMe",
+      "description": "Get the user’s profile",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateMe",
+      "description": "Update the user’s profile",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "username",
+          "type": "String",
+          "info": "Username",
+          "required": false
+        },
+        {
+          "name": "firstName",
+          "type": "String",
+          "info": "User first name",
+          "required": false
+        },
+        {
+          "name": "lastname",
+          "type": "String",
+          "info": "User last name",
+          "required": false
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "User email",
+          "required": false
+        },
+        {
+          "name": "url",
+          "type": "String",
+          "info": "User url",
+          "required": false
+        },
+        {
+          "name": "location",
+          "type": "String",
+          "info": "User location",
+          "required": false
+        },
+        {
+          "name": "bio",
+          "type": "String",
+          "info": "User bio",
+          "required": false
+        },
+        {
+          "name": "instagramUsername",
+          "type": "String",
+          "info": "User Instagram username.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getPublicUserProfile",
+      "description": "Retrieve public details on a given user.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "username",
+          "type": "String",
+          "info": "Username of the user",
+          "required": true
+        },
+        {
+          "name": "imageWidth",
+          "type": "Number",
+          "info": "Profile image width in pixels.",
+          "required": false
+        },
+        {
+          "name": "imageHeight",
+          "type": "Number",
+          "info": "Profile image height in pixels.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getUserPortfolioLink",
+      "description": "Retrieve a single user’s portfolio link.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "username",
+          "type": "String",
+          "info": "Username of the user",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getUserPhotos",
+      "description": "Retrieve a single user’s photos.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "username",
+          "type": "String",
+          "info": "Username of the user",
+          "required": true
+        },
+        {
+          "name": "page",
+          "type": "Number",
+          "info": "Page number to retrieve.",
+          "required": false
+        },
+        {
+          "name": "perPage",
+          "type": "Number",
+          "info": "Number of items per page",
+          "required": false
+        },
+        {
+          "name": "orderBy",
+          "type": "Select",
+          "options": [
+            "latest",
+            "oldest",
+            "popular"
+          ],
+          "info": "How to sort the photos.",
+          "required": false
+        },
+        {
+          "name": "stats",
+          "type": "Boolean",
+          "info": "Show the stats for each user’s photo.",
+          "required": false
+        },
+        {
+          "name": "resolution",
+          "type": "String",
+          "info": "The frequency of the stats. (Optional; default: “days”)",
+          "required": false
+        },
+        {
+          "name": "quantity",
+          "type": "Number",
+          "info": "The amount of for each stat. (Optional; default: 30)",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getUsersLikedPhotos",
+      "description": "Get a list of photos liked by a user.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "username",
+          "type": "String",
+          "info": "Username of the user",
+          "required": true
+        },
+        {
+          "name": "page",
+          "type": "Number",
+          "info": "Page number to retrieve.",
+          "required": false
+        },
+        {
+          "name": "perPage",
+          "type": "Number",
+          "info": "Number of items per page",
+          "required": false
+        },
+        {
+          "name": "orderBy",
+          "type": "Select",
+          "options": [
+            "latest",
+            "oldest",
+            "popular"
+          ],
+          "info": "How to sort the photos.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getUsersCollections",
+      "description": "Get a list of collections created by the user.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "username",
+          "type": "String",
+          "info": "Username of the user",
+          "required": true
+        },
+        {
+          "name": "page",
+          "type": "Number",
+          "info": "Page number to retrieve.",
+          "required": false
+        },
+        {
+          "name": "perPage",
+          "type": "Number",
+          "info": "Number of items per page",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getUsersStatistics",
+      "description": "Retrieve the consolidated number of downloads, views and likes of all user’s photos, as well as the historical breakdown and average of these stats in a specific timeframe (default is 30 days).",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "username",
+          "type": "String",
+          "info": "Username of the user",
+          "required": true
+        },
+        {
+          "name": "resolution",
+          "type": "String",
+          "info": "The frequency of the stats. (Optional; default: “days”)",
+          "required": false
+        },
+        {
+          "name": "quantity",
+          "type": "Number",
+          "info": "The amount of for each stat. (Optional; default: 30)",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getPhotos",
+      "description": "Get a single page from the list of all photos.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "page",
+          "type": "Number",
+          "info": "Page number to retrieve.",
+          "required": false
+        },
+        {
+          "name": "perPage",
+          "type": "Number",
+          "info": "Number of items per page",
+          "required": false
+        },
+        {
+          "name": "orderBy",
+          "type": "Select",
+          "options": [
+            "latest",
+            "oldest",
+            "popular"
+          ],
+          "info": "How to sort the photos.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getCuratedPhotos",
+      "description": "Get a single page from the list of curated photos.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "page",
+          "type": "Number",
+          "info": "Page number to retrieve.",
+          "required": false
+        },
+        {
+          "name": "perPage",
+          "type": "Number",
+          "info": "Number of items per page",
+          "required": false
+        },
+        {
+          "name": "orderBy",
+          "type": "Select",
+          "options": [
+            "latest",
+            "oldest",
+            "popular"
+          ],
+          "info": "How to sort the photos.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSinglePhoto",
+      "description": "Get a single photo full details.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "photoId",
+          "type": "String",
+          "info": "Id of the photo",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getRandomPhoto",
+      "description": "Retrieve a single random photo, given optional filters.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "imageWidth",
+          "type": "Number",
+          "info": "Image width in pixels.",
+          "required": false
+        },
+        {
+          "name": "imageHeight",
+          "type": "Number",
+          "info": "Image height in pixels.",
+          "required": false
+        },
+        {
+          "name": "collections",
+          "type": "List",
+          "structure": {
+            "name": "collectionId",
+            "type": "String",
+            "info": "Id of the single collection"
+          },
+          "info": "Image height in pixels.",
+          "required": false
+        },
+        {
+          "name": "featured",
+          "type": "Boolean",
+          "info": "Limit selection to featured photos.",
+          "required": false
+        },
+        {
+          "name": "username",
+          "type": "String",
+          "info": "Limit selection to a single user.",
+          "required": false
+        },
+        {
+          "name": "query",
+          "type": "String",
+          "info": "Limit selection to photos matching a search term.",
+          "required": false
+        },
+        {
+          "name": "orientation",
+          "type": "Select",
+          "options": [
+            "landscape",
+            "portrait",
+            "squarish"
+          ],
+          "info": "Filter search results by photo orientation.",
+          "required": false
+        },
+        {
+          "name": "count",
+          "type": "Number",
+          "info": "The number of photos to return. (Default: 1; max: 30)",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getPhotosStatistics",
+      "description": "Get a single photo statistics",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "photoId",
+          "type": "String",
+          "info": "Id of the photo",
+          "required": true
+        },
+        {
+          "name": "resolution",
+          "type": "String",
+          "info": "The frequency of the stats. (Optional; default: “days”)",
+          "required": false
+        },
+        {
+          "name": "quantity",
+          "type": "Number",
+          "info": "The amount of for each stat. (Optional; default: 30)",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getPhotosDownloadLink",
+      "description": "Get a single photo download link",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "photoId",
+          "type": "String",
+          "info": "Id of the photo",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updatePhoto",
+      "description": "Update a photo on behalf of the logged-in user.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "photoId",
+          "type": "String",
+          "info": "Id of the photo",
+          "required": true
+        },
+        {
+          "name": "coordinates",
+          "type": "Map",
+          "info": "The photo location’s latitude and longitude coma separated",
+          "required": false
+        },
+        {
+          "name": "locationName",
+          "type": "String",
+          "info": "The photo location’s name",
+          "required": false
+        },
+        {
+          "name": "locationCity",
+          "type": "String",
+          "info": "The photo location’s city",
+          "required": false
+        },
+        {
+          "name": "locationCountry",
+          "type": "String",
+          "info": "The photo location’s country",
+          "required": false
+        },
+        {
+          "name": "locationConfidential",
+          "type": "Boolean",
+          "info": "The photo location’s confidentiality",
+          "required": false
+        },
+        {
+          "name": "make",
+          "type": "String",
+          "info": "Camera’s brand",
+          "required": false
+        },
+        {
+          "name": "model",
+          "type": "String",
+          "info": "Camera’s model",
+          "required": false
+        },
+        {
+          "name": "exposureTime",
+          "type": "String",
+          "info": "Camera’s exposure time",
+          "required": false
+        },
+        {
+          "name": "apertureValue",
+          "type": "String",
+          "info": "Camera’s aperture value",
+          "required": false
+        },
+        {
+          "name": "isoSpeedRatings",
+          "type": "String",
+          "info": "Camera’s iso speed ratings",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "likePhoto",
+      "description": "Like single photo",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "photoId",
+          "type": "String",
+          "info": "Id of the photo",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "unlikePhoto",
+      "description": "Unlike single photo",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "photoId",
+          "type": "String",
+          "info": "Id of the photo",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "searchPhotos",
+      "description": "Get a single page of photo results for a query.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "collections",
+          "type": "List",
+          "structure": {
+            "name": "collectionId",
+            "type": "String",
+            "info": "Id of the single collection"
+          },
+          "info": "Image height in pixels.",
+          "required": false
+        },
+        {
+          "name": "query",
+          "type": "String",
+          "info": "Limit selection to photos matching a search term.",
+          "required": true
+        },
+        {
+          "name": "page",
+          "type": "Number",
+          "info": "Page number to retrieve.",
+          "required": false
+        },
+        {
+          "name": "perPage",
+          "type": "Number",
+          "info": "Number of items per page",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "searchCollections",
+      "description": "Get a single page of collections results for a query.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "query",
+          "type": "String",
+          "info": "Limit selection to collections matching a search term.",
+          "required": true
+        },
+        {
+          "name": "page",
+          "type": "Number",
+          "info": "Page number to retrieve.",
+          "required": false
+        },
+        {
+          "name": "perPage",
+          "type": "Number",
+          "info": "Number of items per page",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "searchUsers",
+      "description": "Get a single page of users results for a query.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "query",
+          "type": "String",
+          "info": "Limit selection to users matching a search term.",
+          "required": true
+        },
+        {
+          "name": "page",
+          "type": "Number",
+          "info": "Page number to retrieve.",
+          "required": false
+        },
+        {
+          "name": "perPage",
+          "type": "Number",
+          "info": "Number of items per page",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getCollections",
+      "description": "Get a single page from the list of all collections.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "page",
+          "type": "Number",
+          "info": "Page number to retrieve.",
+          "required": false
+        },
+        {
+          "name": "perPage",
+          "type": "Number",
+          "info": "Number of items per page",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getFeaturedCollections",
+      "description": "Get a single page from the list of featured collections.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "page",
+          "type": "Number",
+          "info": "Page number to retrieve.",
+          "required": false
+        },
+        {
+          "name": "perPage",
+          "type": "Number",
+          "info": "Number of items per page",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getCuratedCollections",
+      "description": "Get a single page from the list of curated collections.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "page",
+          "type": "Number",
+          "info": "Page number to retrieve.",
+          "required": false
+        },
+        {
+          "name": "perPage",
+          "type": "Number",
+          "info": "Number of items per page",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSingleCollection",
+      "description": "Get a single collection by Id",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "collectionId",
+          "type": "String",
+          "info": "Collection id",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getCollectionsPhotos",
+      "description": "Get a single collection photos",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "collectionId",
+          "type": "String",
+          "info": "Collection id",
+          "required": true
+        },
+        {
+          "name": "page",
+          "type": "Number",
+          "info": "Page number to retrieve.",
+          "required": false
+        },
+        {
+          "name": "perPage",
+          "type": "Number",
+          "info": "Number of items per page",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getCollectionsRelatedCollections",
+      "description": "Retrieve a list of collections related to this one.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "collectionId",
+          "type": "String",
+          "info": "Collection id",
+          "required": true
+        },
+        {
+          "name": "page",
+          "type": "Number",
+          "info": "Page number to retrieve.",
+          "required": false
+        },
+        {
+          "name": "perPage",
+          "type": "Number",
+          "info": "Number of items per page",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createCollection",
+      "description": "Create a new collection.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "info": "Collection title",
+          "required": true
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "info": "Collection description",
+          "required": false
+        },
+        {
+          "name": "private",
+          "type": "Boolean",
+          "info": "Whether to make this collection private. ",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateCollection",
+      "description": "Update existing collection.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "collectionId",
+          "type": "Number",
+          "info": "Collection id",
+          "required": true
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "info": "Collection title",
+          "required": false
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "info": "Collection description",
+          "required": false
+        },
+        {
+          "name": "private",
+          "type": "Boolean",
+          "info": "Whether to make this collection private. ",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "addPhotoToCollection",
+      "description": "Add photo to existing collection.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "collectionId",
+          "type": "Number",
+          "info": "Collection id",
+          "required": true
+        },
+        {
+          "name": "photoId",
+          "type": "String",
+          "info": "Photo id",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "addPhotoToCollection",
+      "description": "Add photo to existing collection.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "collectionId",
+          "type": "Number",
+          "info": "Collection id",
+          "required": true
+        },
+        {
+          "name": "photoId",
+          "type": "String",
+          "info": "Photo id",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "removePhotoFromCollection",
+      "description": "Remove photo from existing collection.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "collectionId",
+          "type": "Number",
+          "info": "Collection id",
+          "required": true
+        },
+        {
+          "name": "photoId",
+          "type": "String",
+          "info": "Photo id",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteCollection",
+      "description": "Delete existing collection.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        },
+        {
+          "name": "collectionId",
+          "type": "Number",
+          "info": "Collection id",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getUnsplashCounts",
+      "description": "Get a list of counts for all of Unsplash.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "User access token",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    }
+  ]
+}
