@@ -1288,40 +1288,6 @@
       ]
     },
     {
-      "name": "addPhotoToCollection",
-      "description": "Add photo to existing collection.",
-      "args": [
-        {
-          "name": "accessToken",
-          "type": "String",
-          "info": "User access token",
-          "required": true
-        },
-        {
-          "name": "collectionId",
-          "type": "Number",
-          "info": "Collection id",
-          "required": true
-        },
-        {
-          "name": "photoId",
-          "type": "String",
-          "info": "Photo id",
-          "required": true
-        }
-      ],
-      "callbacks": [
-        {
-          "name": "error",
-          "info": "Error"
-        },
-        {
-          "name": "success",
-          "info": "Success"
-        }
-      ]
-    },
-    {
       "name": "removePhotoFromCollection",
       "description": "Remove photo from existing collection.",
       "args": [
